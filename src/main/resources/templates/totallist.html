@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.org.thymeleaf">
+<head th:replace="~{/all_css_js :: allcss}">
+</head>
+<body>
+    <div class="container" th:replace="~{/nav :: header}"></div>
+    <div class="container">
+        <h2  class = "mt-4">Watchlist</h2>
+		<table class="table">
+			<thead class = "thead-light">
+		        <tr>
+                    <th class="text-left">Id</th>
+		            <th class="text-left">Name</th>
+		            <th class="text-left">Rating</th>
+		            <th class="text-left">Priority</th>
+		            <th class="text-left">Comment</th>
+		            <th class="text-left">Action</th>
+		        </tr>
+		    </thead>
+			<tbody>
+				<tr th:each="movierow :${allList}">
+		            <td th:text="${movierow.id}">100</td>
+                    <td th:text="${movierow.title}">Avatar</td>
+		            <td th:text="${movierow.rating}">7.8</td>
+		            <td th:text="${movierow.priority}">LoW</td>
+		            <td th:text="${movierow.comment}">Peter recommended</td>
+					<td><a href="#" class="btn btn-info" role="button" th:href="@{/submit-form(id=${movierow.id})}">Update</a>
+					<a style="background: rgba(255, 0, 0.4);" onMouseOver="this.style.background='green'" onMouseOut="this.style.background='red'" href="#" class="btn btn-info" id="child-btn" role="button" th:href="@{/delete(id=${movierow.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr/>
+        <div>Number of movies to watch: <span th:text="${sizeOfList}"> </div>
+    </div>
+</body>
+</html>
